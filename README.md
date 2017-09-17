@@ -126,6 +126,21 @@ require('./vars.js');
 
 It is recommended to `require` all JS modules before any `@import` rules.
 
+### Plugins
+
+In order to use LESS plugins, simply set the `plugins` option:
+
+```js
+const CleanCSSPlugin = require('less-plugin-clean-css')
+
+neutrino.use(lessLoader, {
+  less: {
+    plugins: [
+      new CleanCSSPlugin({ advanced: true })
+    ]
+  }
+})
+```
 
 ## Rules
 
