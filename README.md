@@ -67,11 +67,61 @@ module.exports = {
 }
 ```
 
+### Imports paths
+
+The loader can resolve paths in one of two modes: Less or Webpack. 
+
+Webpack's resolver is used by default. To use its advantages to look up the `modules` you need to prepend `~` to the path:
+
+```css
+@import "~bootstrap/less/bootstrap";
+```
+Otherwise the path will be determined as a relative URL, `@import "file"` is the same as `@import "./file"`
+
+If you specify the `paths` option, the Webpack's resolver will not be used. Modules, that can't be resolved in the local folder, will be searched in the given `paths`. This is Less' default behavior. `paths` should be an array with absolute paths:
+
+```js
+neutrino.use(lessLoader, {
+  paths: [
+    path.resolve(__dirname, 'node_modules')
+  ]
+})
+```
+
+### Importing variables from JS
+
+LESS files can import variables from JS modules. Example:
+
+**vars.js**
+```js
+module.exports = {
+  'default-color': 'yellow',
+  'border': '2px solid red'
+}
+```
+
+**main.less**
+```less
+require('./vars.js');
+
+@import "./other.less";
+
+.box:extend(.darkgreen) {
+  color: @default-color;
+  border: @border;
+  width: 200px;
+  height: 200px;
+}
+```
+
+It is recommended to `require` all JS modules before any `@import` rules.
+
+
 ## Rules
 
 This is a list of rules that are used by `neutrino-middleware-less-loader`:
 
-* `less`: Compiles Less styles to CSS styles. Contains a single loader named the same `less`.
+* `less`: Compiles Less styles to CSS styles. Contains two loaders named: `less` and `less-var`.
 * `style`: Only necessary file extension added. CSS loader should be provided to correctly compile styles to JavaScript.
 
 

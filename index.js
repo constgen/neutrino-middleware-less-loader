@@ -57,6 +57,9 @@ module.exports = function (neutrino, options = {}) {
 			}, opts))
 			.tap(opts => merge(opts, options))
 			.end()
+		.use('less-var')
+			.loader(require.resolve('js-to-styles-var-loader'))
+			.end()
 
 	config
 		.resolve.extensions
