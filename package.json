@@ -1,0 +1,43 @@
+{
+	"name": "neutrino-middleware-less-loader",
+	"version": "1.0.0",
+	"description": "Neutrino Less loader middleware",
+	"main": "index.js",
+	"author": "Constantine Genchevsky <const.gen@gmail.com>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/constgen/neutrino-middleware-less-loader.git"
+	},
+	"homepage": "https://github.com/constgen/neutrino-middleware-less-loader",
+	"keywords": [
+		"neutrino",
+		"neutrino-middlware",
+		"neutrino middlware",
+		"webpack",
+		"less"
+	],
+	"dependencies": {
+		"deepmerge": "~1.5.0",
+		"arrify": "~1.0.1",
+		"less-loader": "~4.0.5",
+		"less": "~2.7.2"
+	},
+	"devDependencies": {
+		"eslint": "~4.6.1",
+		"webpack": "^3.0.0"
+	},
+	"peerDependencies": {
+		"neutrino": "^5.0.0 || ^6.0.0"
+	},
+	"files": [
+		"*.js",
+		"README.md",
+		"LICENSE",
+		"package.json"
+	],
+	"engines": {
+		"node": ">=6.9.0",
+		"npm": ">=3.0.0"
+	}
+}
