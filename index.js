@@ -16,6 +16,9 @@ module.exports = function (neutrino, options = {}) {
 	if (!options.include && !options.exclude) {
 		options.include = [neutrino.options.source, neutrino.options.tests]
 	}
+	if (!options.less) {
+		options.less = {}
+	}
 
 	styleRule
 		.test(styleExtensions)
@@ -55,7 +58,7 @@ module.exports = function (neutrino, options = {}) {
 				urlArgs: '',
 				plugins: []
 			}, opts))
-			.tap(opts => merge(opts, options))
+			.tap(opts => merge(opts, options.less))
 			.end()
 		.use('less-var')
 			.loader(require.resolve('js-to-styles-var-loader'))

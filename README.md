@@ -30,24 +30,32 @@ Require this package and plug it into Neutrino. The following shows how you can 
 const lessLoader = require('neutrino-middleware-less-loader')
 
 neutrino.use(lessLoader, {
-  compress: true,
-  strictImports: true,
-  insecure: true,
-  maxLineLen: -1,
-  ieCompat: false,
-  paths: [],
-  sourceMap: true,
-  relativeUrls: true,
-  strictMath: false,
-  strictUnits: false,
-  globalVars: {},
-  modifyVars: {},
-  urlArgs: '',
-  plugins: []
+  include: [],
+  exclude: [],
+  less: {
+    compress: true,
+    strictImports: true,
+    insecure: true,
+    maxLineLen: -1,
+    ieCompat: false,
+    paths: [],
+    sourceMap: true,
+    relativeUrls: true,
+    strictMath: false,
+    strictUnits: false,
+    globalVars: {},
+    modifyVars: {},
+    urlArgs: '',
+    plugins: []
+  }
 })
 ```
 
-The options Reference can be found in official [Less Documentation](http://lesscss.org/3.x/usage/#less-options)
+* `include`: optional array of paths to include in the compilation. Maps to Webpack's rule.include.
+* `exclude`: optional array of paths to exclude from the compilation. Maps to Webpack's rule.include.
+* `less`: optional **Less** config that is passed to loader.
+
+The LESS config Reference can be found in official [Less Documentation](http://lesscss.org/3.x/usage/#less-options)
 
 It is recommended to call this middleware after the `neutrino.config.module.rule('style')` initialization to avoid unexpected overriding. More information about usage of Neutrino middlewares can be found in the [documentation](https://neutrino.js.org/middleware). More in-depth description about customization may be found in the [Less Loader Documentation](https://github.com/webpack-contrib/less-loader)
 
@@ -82,9 +90,11 @@ If you specify the `paths` option, the Webpack's resolver will not be used. Modu
 
 ```js
 neutrino.use(lessLoader, {
-  paths: [
-    path.resolve(__dirname, 'node_modules')
-  ]
+  less: {
+    paths: [
+      path.resolve(__dirname, 'node_modules')
+    ]
+  }
 })
 ```
 
