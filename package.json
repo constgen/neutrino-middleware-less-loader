@@ -1,6 +1,6 @@
 {
 	"name": "neutrino-middleware-less-loader",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"description": "Neutrino Less loader middleware",
 	"main": "index.js",
 	"author": "Constantine Genchevsky <const.gen@gmail.com>",
@@ -18,18 +18,17 @@
 		"less"
 	],
 	"dependencies": {
-		"deepmerge": "~1.5.0",
+		"deepmerge": "~1.5.2",
 		"arrify": "~1.0.1",
 		"less-loader": "~4.0.5",
 		"less": "~2.7.2",
-		"js-to-styles-var-loader": "~1.0.2"
+		"js-to-styles-var-loader": "~1.0.3"
 	},
 	"devDependencies": {
-		"eslint": "~4.6.1",
-		"webpack": "^3.0.0"
+		"eslint": "~4.6.1"
 	},
 	"peerDependencies": {
-		"neutrino": "^5.0.0 || ^6.0.0"
+		"neutrino": "^5.0.0 || ^6.0.0 || ^7.0.0"
 	},
 	"files": [
 		"*.js",
