@@ -4,7 +4,7 @@ let path = require('path')
 let arrify = require('arrify')
 let merge = require('deepmerge')
 
-module.exports = function (neutrino, options = {}) {
+module.exports = function (neutrino, settings = {}) {
 	const NODE_MODULES = path.join(__dirname, 'node_modules')
 	const LOADER_EXTENSIONS = /\.less$/
 	let config = neutrino.config
@@ -13,11 +13,11 @@ module.exports = function (neutrino, options = {}) {
 	let styleExtensions = arrify(styleRule.get('test')).concat(LOADER_EXTENSIONS)
 
 	// default values
-	if (!options.include && !options.exclude) {
-		options.include = [neutrino.options.source, neutrino.options.tests]
+	if (!settings.include && !settings.exclude) {
+		settings.include = [neutrino.options.source, neutrino.options.tests]
 	}
-	if (!options.less) {
-		options.less = {}
+	if (!settings.less) {
+		settings.less = {}
 	}
 
 	styleRule
@@ -26,16 +26,16 @@ module.exports = function (neutrino, options = {}) {
 	lessRule
 		.test(LOADER_EXTENSIONS)
 		.include
-			.merge(options.include || [])
+			.merge(settings.include || [])
 			.end()
 		.exclude
 			.add(NODE_MODULES)
-			.merge(options.exclude || [])
+			.merge(settings.exclude || [])
 			.end()
 		.use('less')
 			.loader(require.resolve('less-loader'))
-			.tap((opts = {}) => opts)
-			.tap(opts => merge({
+			.tap((options = {}) => options)
+			.tap(options => merge({
 				compress: true,
 				strictImports: true,
 				insecure: true,
@@ -44,9 +44,9 @@ module.exports = function (neutrino, options = {}) {
 				paths: [],
 				// rootpath: ''
 				sourceMap: true, // {
-				// 	sourceMapRootpath: '', 
-				// 	sourceMapBasepath: '', 
-				// 	outputSourceFiles: true, 
+				// 	sourceMapRootpath: '',
+				// 	sourceMapBasepath: '',
+				// 	outputSourceFiles: true,
 				// 	sourceMapFileInline: true,
 				// 	sourceMapURL: ''
 				// }
@@ -57,8 +57,8 @@ module.exports = function (neutrino, options = {}) {
 				modifyVars: {},
 				urlArgs: '',
 				plugins: []
-			}, opts))
-			.tap(opts => merge(opts, options.less))
+			}, options))
+			.tap(options => merge(options, settings.less))
 			.end()
 		.use('less-var')
 			.loader(require.resolve('js-to-styles-var-loader'))

@@ -8,7 +8,7 @@
 ## Requirements
 
 * Node.js v6.9+
-* Neutrino v5 or v6
+* Neutrino v5-v8
 
 ## Installation
 
@@ -67,17 +67,15 @@ The middleware also may be used together with another presets in Neutrino rc-fil
 ```js
 module.exports = {
   use: [
-    [
-      'neutrino-preset-web',
-      'neutrino-middleware-less-loader'
-    ]
+    'neutrino-preset-web',
+    'neutrino-middleware-less-loader'
   ]
 }
 ```
 
 ### Imports paths
 
-The loader can resolve paths in one of two modes: Less or Webpack. 
+The loader can resolve paths in one of two modes: Less or Webpack.
 
 Webpack's resolver is used by default. To use its advantages to look up the `modules` you need to prepend `~` to the path:
 
@@ -148,5 +146,3 @@ This is a list of rules that are used by `neutrino-middleware-less-loader`:
 
 * `less`: Compiles Less styles to CSS styles. Contains two loaders named: `less` and `less-var`.
 * `style`: Only necessary file extension added. CSS loader should be provided to correctly compile styles to JavaScript.
-
-
