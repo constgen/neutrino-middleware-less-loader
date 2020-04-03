@@ -7,15 +7,15 @@
 
 ## Requirements
 
-* Node.js v6.9+
-* Neutrino v5-v8
+* Node.js v10+
+* Neutrino v9
 
 ## Installation
 
-`neutrino-middleware-less-loader` can be installed from NPM.
+`neutrino-middleware-less-loader` can be installed from NPM. You should install it to `"dependencies"` (--save) or `"devDependncies"` (--save-dev) depending on your goal.
 
-```
-❯ npm install --save neutrino-middleware-less-loader
+```bash
+npm install --save-dev neutrino-middleware-less-loader
 ```
 
 ## Usage
@@ -27,28 +27,27 @@
 Require this package and plug it into Neutrino. The following shows how you can pass an options object to the middleware, showing the defaults:
 
 ```js
-const lessLoader = require('neutrino-middleware-less-loader')
+let lessLoader = require('neutrino-middleware-less-loader')
 
-neutrino.use(lessLoader, {
-  include: [],
-  exclude: [],
-  less: {
-    compress: true,
-    strictImports: true,
-    insecure: true,
-    maxLineLen: -1,
-    ieCompat: false,
-    paths: [],
-    sourceMap: true,
-    relativeUrls: true,
-    strictMath: false,
-    strictUnits: false,
-    globalVars: {},
-    modifyVars: {},
-    urlArgs: '',
-    plugins: []
-  }
-})
+neutrino.use(lessLoader({
+   include: ['src', 'tests'],
+   exclude: [],
+   sourceMap: true,
+   less: {
+      strictImports: true,
+      insecure: true,
+      maxLineLen: -1,
+      ieCompat: false,
+      paths: [],
+      relativeUrls: true,
+      strictMath: false,
+      strictUnits: false,
+      globalVars: {},
+      modifyVars: {},
+      urlArgs: '',
+      plugins: []
+   }
+}))
 ```
 
 * `include`: optional array of paths to include in the compilation. Maps to Webpack's rule.include.
@@ -59,17 +58,21 @@ The LESS config Reference can be found in official [Less Documentation](http://l
 
 It is recommended to call this middleware after the `neutrino.config.module.rule('style')` initialization to avoid unexpected overriding. More information about usage of Neutrino middlewares can be found in the [documentation](https://neutrino.js.org/middleware). More in-depth description about customization may be found in the [Less Loader Documentation](https://github.com/webpack-contrib/less-loader)
 
-### In neutrinorc
+### In **neutrinorc**
 
 The middleware also may be used together with another presets in Neutrino rc-file, e.g.:
 
 **.neutrinorc.js**
+
 ```js
+let web = require('@neutrino/web')
+let lessLoader = require('neutrino-middleware-less-loader')
+
 module.exports = {
-  use: [
-    'neutrino-preset-web',
-    'neutrino-middleware-less-loader'
-  ]
+   use: [
+      web(),
+      lessLoader()
+   ]
 }
 ```
 
@@ -87,13 +90,15 @@ Otherwise the path will be determined as a relative URL, `@import "file"` is the
 If you specify the `paths` option, the Webpack's resolver will not be used. Modules, that can't be resolved in the local folder, will be searched in the given `paths`. This is Less' default behavior. `paths` should be an array with absolute paths:
 
 ```js
-neutrino.use(lessLoader, {
-  less: {
-    paths: [
-      path.resolve(__dirname, 'node_modules')
-    ]
-  }
-})
+let lessLoader = require('neutrino-middleware-less-loader')
+
+neutrino.use(lessLoader({
+   less: {
+      paths: [
+         path.resolve(__dirname, 'node_modules')
+      ]
+   }
+}))
 ```
 
 ### Importing variables from JS
@@ -101,14 +106,16 @@ neutrino.use(lessLoader, {
 LESS files can import variables from JS modules. Example:
 
 **vars.js**
+
 ```js
 module.exports = {
-  'default-color': 'yellow',
-  'border': '2px solid red'
+   'default-color': 'yellow',
+   'border': '2px solid red'
 }
 ```
 
 **main.less**
+
 ```less
 require('./vars.js');
 
@@ -129,15 +136,15 @@ It is recommended to `require` all JS modules before any `@import` rules.
 In order to use LESS plugins, simply set the `plugins` option:
 
 ```js
-const CleanCSSPlugin = require('less-plugin-clean-css')
+let CleanCSSPlugin = require('less-plugin-clean-css')
 
-neutrino.use(lessLoader, {
-  less: {
-    plugins: [
-      new CleanCSSPlugin({ advanced: true })
-    ]
-  }
-})
+neutrino.use(lessLoader({
+   less: {
+      plugins: [
+         new CleanCSSPlugin({ advanced: true })
+      ]
+   }
+}))
 ```
 
 ## Rules
