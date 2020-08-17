@@ -6,15 +6,16 @@ jsToStylesVarLoader.operator.getPreprocessorType = function getPreprocessorType 
 	const preProcs = [
 		 {
 			  type: 'sass',
-			  reg: /\.scss$|\.sass$|\.vue\?.*?lang=scss|\.vue\?.*?lang=sass/
+			  reg : /\.scss$|\.sass$|\.vue\?.*?lang=scss|\.vue\?.*?lang=sass/
 		 },
 		 {
 			  type: 'less',
-			  reg: /\.less$|\.vue\?.*?lang=less/
+			  reg : /\.less$|\.vue\?.*?lang=less/
 		 }
-	];
+	]
 
-	const result = preProcs.find( item => item.reg.test(resource));
-	if (result) return result.type;
-	throw Error(`Unknown preprocesor type for ${resource}`);
+	const result = preProcs.find(item => item.reg.test(resource))
+
+	if (result) return result.type
+	throw new Error(`Unknown preprocesor type for ${resource}`)
 }

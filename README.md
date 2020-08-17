@@ -30,22 +30,22 @@ Require this package and plug it into Neutrino. The following shows how you can 
 let lessLoader = require('neutrino-middleware-less-loader')
 
 neutrino.use(lessLoader({
-   include: ['src', 'tests'],
-   exclude: [],
+   include  : ['src', 'tests'],
+   exclude  : [],
    sourceMap: true,
-   less: {
+   less     : {
       strictImports: true,
-      insecure: true,
-      maxLineLen: -1,
-      ieCompat: false,
-      paths: [],
-      relativeUrls: true,
-      strictMath: false,
-      strictUnits: false,
-      globalVars: {},
-      modifyVars: {},
-      urlArgs: '',
-      plugins: []
+      insecure     : true,
+      maxLineLen   : -1,
+      ieCompat     : false,
+      paths        : [],
+      relativeUrls : true,
+      strictMath   : false,
+      strictUnits  : false,
+      globalVars   : {},
+      modifyVars   : {},
+      urlArgs      : '',
+      plugins      : []
    }
 }))
 ```
@@ -65,7 +65,7 @@ The middleware also may be used together with another presets in Neutrino rc-fil
 **.neutrinorc.js**
 
 ```js
-let web = require('@neutrino/web')
+let web        = require('@neutrino/web')
 let lessLoader = require('neutrino-middleware-less-loader')
 
 module.exports = {
@@ -85,6 +85,7 @@ Webpack's resolver is used by default. To use its advantages to look up the `mod
 ```css
 @import "~bootstrap/less/bootstrap";
 ```
+
 Otherwise the path will be determined as a relative URL, `@import "file"` is the same as `@import "./file"`
 
 If you specify the `paths` option, the Webpack's resolver will not be used. Modules, that can't be resolved in the local folder, will be searched in the given `paths`. This is Less' default behavior. `paths` should be an array with absolute paths:
@@ -110,7 +111,7 @@ LESS files can import variables from JS modules. Example:
 ```js
 module.exports = {
    'default-color': 'yellow',
-   'border': '2px solid red'
+   'border'       : '2px solid red'
 }
 ```
 
