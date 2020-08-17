@@ -1,6 +1,8 @@
 let arrify = require('arrify')
 let deepmerge = require('deepmerge')
 
+require('./fixes')
+
 module.exports = function (customSettings = {}) {
 	return function (neutrino) {
 		const LESS_EXTENSIONS = /\.less$/
@@ -19,8 +21,7 @@ module.exports = function (customSettings = {}) {
 		if (styleExtensions) {
 			let extensions = arrify(styleExtensions).concat(LESS_EXTENSIONS)
 
-			styleRule
-				.test(extensions)
+			styleRule.test(extensions)
 		}
 		if (styleRule) {
 			let oneOfs = styleRule.oneOfs.values().filter(oneOf => oneOf.get('test'))
