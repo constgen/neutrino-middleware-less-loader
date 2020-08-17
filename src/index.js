@@ -54,20 +54,15 @@ module.exports = function (customSettings = {}) {
 				.tap(options => deepmerge({
 					sourceMap  : true,
 					lessOptions: {
-						strictImports: true,
-						insecure     : true,
-						maxLineLen   : -1,
-						ieCompat     : false,
-						paths        : [],
-
-						// rootpath: ''
-						relativeUrls: true,
-						strictMath  : false,
-						strictUnits : false,
-						globalVars  : {},
-						modifyVars  : {},
-						urlArgs     : '',
-						plugins     : []
+						insecure   : true,
+						paths      : [],
+						rewriteUrls: 'all',
+						math       : 'always',
+						strictUnits: false,
+						globalVars : {},
+						modifyVars : {},
+						urlArgs    : '',
+						plugins    : []
 					}
 				}, options))
 				.tap(options => deepmerge(options, { lessOptions: settings.less }))

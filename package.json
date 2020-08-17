@@ -25,8 +25,7 @@
 	"dependencies": {
 		"deepmerge": "4.2.2",
 		"arrify": "2.0.1",
-		"less-loader": "5.0.0",
-		"less": "~3.11.1",
+		"less-loader": "6.2.0",
 		"js-to-styles-var-loader": "1.1.0"
 	},
 	"devDependencies": {

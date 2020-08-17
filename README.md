@@ -34,18 +34,15 @@ neutrino.use(lessLoader({
    exclude  : [],
    sourceMap: true,
    less     : {
-      strictImports: true,
-      insecure     : true,
-      maxLineLen   : -1,
-      ieCompat     : false,
-      paths        : [],
-      relativeUrls : true,
-      strictMath   : false,
-      strictUnits  : false,
-      globalVars   : {},
-      modifyVars   : {},
-      urlArgs      : '',
-      plugins      : []
+      insecure   : true,
+      paths      : [],
+      rewriteUrls: 'all',
+      math       : 'always',
+      strictUnits: false,
+      globalVars : {},
+      modifyVars : {},
+      urlArgs    : '',
+      plugins    : []
    }
 }))
 ```
