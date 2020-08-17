@@ -1,6 +1,6 @@
 {
 	"name": "neutrino-middleware-less-loader",
-	"version": "5.0.0",
+	"version": "6.0.0",
 	"description": "Neutrino Less loader middleware",
 	"main": "src/index.js",
 	"author": "Constantine Genchevsky <const.gen@gmail.com>",
