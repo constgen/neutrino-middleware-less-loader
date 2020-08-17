@@ -3,11 +3,11 @@
 [![npm](https://img.shields.io/npm/v/neutrino-middleware-less-loader.svg)](https://www.npmjs.com/package/neutrino-middleware-less-loader)
 [![npm](https://img.shields.io/npm/dt/neutrino-middleware-less-loader.svg)](https://www.npmjs.com/package/neutrino-middleware-less-loader)
 
-`neutrino-middleware-less-loader` is a [Neutrino](https://neutrino.js.org) middleware for compiling styles with [Less](http://lesscss.org/). This middleware only transforms Less to CSS. It is recommended to have `neutrino-middleware-style-loader` (or its substitution) in the configuration to be able to compile Less styles to JavaScript modules.
+`neutrino-middleware-less-loader` is a [Neutrino](https://neutrino.js.org) middleware for compiling styles with [Less](http://lesscss.org/). This middleware only transforms Less to CSS. It is recommended to have `@neutrinojs/style-loader` (or its substitution) in the configuration to be able to compile Less styles to JavaScript modules.
 
 ## Requirements
 
-* Node.js v10+
+* Node.js v10.13+
 * Neutrino v9
 
 ## Installation
@@ -30,10 +30,9 @@ Require this package and plug it into Neutrino. The following shows how you can 
 let lessLoader = require('neutrino-middleware-less-loader')
 
 neutrino.use(lessLoader({
-   include  : ['src', 'tests'],
-   exclude  : [],
-   sourceMap: true,
-   less     : {
+   include: ['src', 'tests'],
+   exclude: [],
+   less   : {
       insecure   : true,
       paths      : [],
       rewriteUrls: 'all',
@@ -49,11 +48,9 @@ neutrino.use(lessLoader({
 
 * `include`: optional array of paths to include in the compilation. Maps to Webpack's rule.include.
 * `exclude`: optional array of paths to exclude from the compilation. Maps to Webpack's rule.include.
-* `less`: optional **Less** config that is passed to loader.
+* `less`: optional [Less options](http://lesscss.org/3.x/usage/#less-options) config that is passed to the loader.
 
-The LESS config Reference can be found in official [Less Documentation](http://lesscss.org/3.x/usage/#less-options)
-
-It is recommended to call this middleware after the `neutrino.config.module.rule('style')` initialization to avoid unexpected overriding. More information about usage of Neutrino middlewares can be found in the [documentation](https://neutrino.js.org/middleware). More in-depth description about customization may be found in the [Less Loader Documentation](https://github.com/webpack-contrib/less-loader)
+It is recommended to call this middleware after the `neutrino.config.module.rule('style')` initialization to avoid unexpected overriding. More information about usage of Neutrino middlewares can be found in the [documentation](https://neutrino.js.org/middleware).
 
 ### In **neutrinorc**
 
