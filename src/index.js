@@ -1,8 +1,6 @@
 let arrify    = require('arrify')
 let deepmerge = require('deepmerge')
 
-require('./fixes')
-
 module.exports = function (customSettings = {}) {
 	return function (neutrino) {
 		const LESS_EXTENSIONS        = /\.less$/

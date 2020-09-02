@@ -26,7 +26,7 @@
 		"deepmerge": "4.2.2",
 		"arrify": "2.0.1",
 		"less-loader": "6.2.0",
-		"js-to-styles-var-loader": "1.1.0"
+		"js-to-styles-var-loader": "1.2.0"
 	},
 	"devDependencies": {
 		"neutrino": "9.1.0",
