@@ -4,7 +4,7 @@ let deepmerge = require('deepmerge')
 module.exports = function (customSettings = {}) {
 	return function (neutrino) {
 		const LESS_EXTENSIONS        = /\.less$/
-		const LESS_MODULE_EXTENSIONS = /\.module.less$/
+		const LESS_MODULE_EXTENSIONS = /\.module\.less$/
 		let { config }               = neutrino
 		let styleRule                = config.module.rules.get('style')
 		let lessRule                 = config.module.rule('less')
