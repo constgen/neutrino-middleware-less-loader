@@ -1,5 +1,6 @@
 let arrify    = require('arrify')
 let deepmerge = require('deepmerge')
+let less      = require('less')
 
 module.exports = function (customSettings = {}) {
 	return function (neutrino) {
@@ -50,8 +51,9 @@ module.exports = function (customSettings = {}) {
 				.loader(require.resolve('less-loader'))
 				.tap((options = {}) => options)
 				.tap(options => deepmerge({
-					sourceMap  : true,
-					lessOptions: {
+					sourceMap      : true,
+					webpackImporter: true,
+					lessOptions    : {
 						insecure   : true,
 						paths      : [],
 						rewriteUrls: 'all',
@@ -64,6 +66,7 @@ module.exports = function (customSettings = {}) {
 					}
 				}, options))
 				.tap(options => deepmerge(options, { lessOptions: settings.less }))
+				.tap(options => Object.assign(options, { implementation: options.implementation || less })) // prevent destruction of original Less instance
 				.end()
 			.use('less-var')
 				.loader(require.resolve('js-to-styles-var-loader'))
